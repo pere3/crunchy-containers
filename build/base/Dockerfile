@@ -64,7 +64,8 @@ RUN if [ "$BASEOS" = "centos8" ] ; then \
 	&& ${PACKAGER} -y install \
 		--setopt=skip_missing_names_on_install=False \
 		--nodocs \
-		epel-release \
+        https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm \
+        epel-release \
 		glibc-langpack-en \
 		bind-utils \
 		gettext \
