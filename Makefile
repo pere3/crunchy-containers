@@ -157,7 +157,7 @@ postgres-pgimg-build: ccbase-image $(CCPROOT)/build/postgres/Dockerfile
 		--build-arg PACKAGER=$(PACKAGER) \
 		--build-arg BASE_IMAGE_NAME=crunchy-base \
 		--build-arg PATRONI_VER=$(CCP_PATRONI_VERSION) \
-		--build-arg CCP_PG_EXTENSIONS=$(CCP_PG_EXTENSIONS) \
+		--build-arg CCP_PG_EXTENSIONS="$(CCP_PG_EXTENSIONS)" \
 		$(CCPROOT)
 
 postgres-pgimg-buildah: postgres-pgimg-build ;
