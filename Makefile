@@ -5,7 +5,6 @@ endif
 # Default values if not already set
 CCP_BASEOS ?= ubi8
 BASE_IMAGE_OS ?= $(CCP_BASEOS)
-USE_RHEL_FEATURES ?= false
 CCP_PGVERSION ?= 14
 CCP_PG_FULLVERSION ?= 14.5
 CCP_PATRONI_VERSION ?= 2.1.4
@@ -111,7 +110,6 @@ ccbase-image-build: build-pgbackrest license $(CCPROOT)/build/base/Dockerfile
 		--build-arg DOCKERBASEREGISTRY=$(DOCKERBASEREGISTRY) \
 		--build-arg BASE_IMAGE_OS=$(BASE_IMAGE_OS) \
 		--build-arg PG_LBL=${subst .,,$(CCP_PGVERSION)} \
-		--build-arg USE_RHEL=$(USE_RHEL) \
 		$(CCPROOT)
 
 ccbase-image-buildah: ccbase-image-build ;

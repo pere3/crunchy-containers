@@ -15,6 +15,8 @@ ARG PACKAGER
 ARG PG_MAJOR
 # Needed due to lack of environment substitution trick on ADD
 ARG PG_LBL
+# Ability to install additional pg_extensions
+ARG CCP_PG_EXTENSIONS
 
 RUN ${PACKAGER} -y install --nodocs \
 	--disablerepo=crunchydata* \
@@ -60,8 +62,8 @@ RUN if [ "$DFSET" = "centos" ] ; then \
         	bzip2 \
         	lz4 \
 			krb5-workstation \
-			orafce_${PG_MAJOR//.} \
-        && ${PACKAGER} -y clean all ; \
+            ${CCP_PG_EXTENSIONS} \
+    && ${PACKAGER} -y clean all ; \
 else \
         ${PACKAGER} -y install --nodocs \
 		--enablerepo="epel" \
@@ -90,8 +92,8 @@ else \
 		bzip2 \
 		lz4 \
 		krb5-workstation \
-		orafce_${PG_MAJOR//.} \
-	&& ${PACKAGER} -y install --nodocs \
+        ${CCP_PG_EXTENSIONS} \
+    && ${PACKAGER} -y install --nodocs \
 		--setopt=tsflags='' \
 		--enablerepo="epel" \
 		pgaudit_analyze \
