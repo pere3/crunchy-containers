@@ -17,8 +17,8 @@ ARG PG_MAJOR
 ARG PG_LBL
 
 RUN ${PACKAGER} -y install --nodocs \
-	--disablerepo=crunchypg* \
-	--enablerepo="crunchypg${PG_LBL}" \
+	--disablerepo=crunchydata* \
+	--enablerepo="crunchydatadevpg${PG_LBL}" \
 	postgresql${PG_LBL} \
  && ${PACKAGER} -y clean all
 

@@ -82,7 +82,7 @@ ADD conf/*KEY* /
 ADD conf/crunchypg${PG_LBL}.repo /etc/yum.repos.d/
 # Import both keys to support all required repos
 RUN rpm --import RPM-GPG-KEY-crunchydata*
-RUN if [ "$DFSET" = "rhel" ] ; then rpm --import CRUNCHY-GPG-KEY.public ; fi
+RUN if [ "$DFSET" = "rhel" ] && [ "$USE_RHEL_FEATURES" = "true" ] ; then rpm --import CRUNCHY-GPG-KEY.public ; fi
 
 RUN if [ "$BASEOS" = "centos8" ] ; then \
 	${PACKAGER} -qy module disable postgresql ; \
